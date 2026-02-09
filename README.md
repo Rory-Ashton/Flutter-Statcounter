@@ -1,6 +1,6 @@
 # statcounter_flutter
 
-Official Statcounter integration for Flutter Web.
+Official Statcounter integration for Flutter (web only).
 
 This package provides a simple API to load Statcounter on Flutter Web apps and
 track virtual pageviews in single-page applications (SPA). It includes built-in
@@ -9,10 +9,9 @@ loaded after user consent.
 
 ## Features
 
-- Flutter Web support for Statcounter
-- Automatic initial pageview on script load
-- Automatic SPA route tracking
 - Consent-aware loading (no analytics before consent)
+- Automatic initial pageview on script load / consent
+- Automatic SPA route tracking via MaterialPageRoute
 - Non-blocking by default
 - Built-in CMP adapters:
   - CookieYes
@@ -73,14 +72,14 @@ Statcounter.init(
 navigatorObservers: [StatcounterRouteObserver()],
 ```
 
-## Material Router Example Code
+## MaterialPageRoute Example Code
 
 ```dart
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  Statcounter.init(   // <--- STATCOUNTER BLOCK HERE
+  Statcounter.init(   // <--- Statcounter block here
     project: 123456,
     security: 'abcdef',
     manageConsent: true,
@@ -97,57 +96,12 @@ class MyAppMaterial extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo (Material Routes)',
-      navigatorObservers: [StatcounterRouteObserver()],  // <--- STATCOUNTER ADDED HERE
+      navigatorObservers: [StatcounterRouteObserver()],  // <--- Statcounter added here
       initialRoute: '/',
       routes: {
         '/': (context) => const MyHomePageMaterial(),
         '/second': (context) => const SecondPageMaterial(),
       },
-    );
-  }
-}
-```
-
-## GoRouter Example Code
-
-```dart
-
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  Statcounter.init(   // <--- STATCOUNTER BLOCK HERE
-    project: 123456,
-    security: 'abcdef',
-    manageConsent: true,
-    cmp: 'cookiebot',
-  );
-
-  runApp(const MyAppGoRouter());
-}
-
-class MyAppGoRouter extends StatelessWidget {
-  const MyAppGoRouter({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final router = GoRouter(
-      routes: [
-        GoRoute(
-          path: '/',
-          builder: (context, state) => const MyHomePageGo(),
-        ),
-        GoRoute(
-          path: '/second',
-          builder: (context, state) => const SecondPageGo(),
-        ),
-      ],
-    );
-
-    StatcounterGoRouter.attach(router);  // <--- STATCOUNTER ADDED HERE
-
-    return MaterialApp.router(
-      title: 'Flutter Demo (GoRouter)',
-      routerConfig: router,
     );
   }
 }
