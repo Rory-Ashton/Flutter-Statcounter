@@ -2,6 +2,7 @@ name: statcounter_flutter
 description: Official StatCounter integration for Flutter Web SPAs (single-page apps)
 version: 0.1.0
 homepage: https://statcounter.com
+repo : https://github.com/Rory-Ashton/Flutter-Statcounter
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
