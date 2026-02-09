@@ -1,0 +1,15 @@
+# Dart / Flutter
+.dart_tool/
+.packages
+.pub/
+build/
+
+# IDEs
+.idea/
+.vscode/
+
+# OS junk
+.DS_Store
+
+# Logs
+*.log

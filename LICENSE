@@ -1,6 +1,10 @@
 MIT License
 
+<<<<<<< HEAD
 Copyright (c) 2026 Rory-Ashton
+=======
+Copyright (c) 2026 StatCounter
+>>>>>>> cdea8d1 (Initial release: statcounter_flutter 0.1.0)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
