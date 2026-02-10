@@ -49,12 +49,6 @@ flutter pub get
 import 'package:statcounter_flutter/statcounter.dart';
 ```
 
-If you use the GoRouter also import this
-
-```dart
-import 'package:statcounter_flutter_gorouter/statcounter_flutter_gorouter.dart';
-```
-
 2.  In that same file add this to your main() , using your own project ID and security code (found in your statcounter project settings).  The cmp options are 'cookiebot' or 'cookieyes'
 
 ```dart
@@ -72,7 +66,36 @@ Statcounter.init(
 navigatorObservers: [StatcounterRouteObserver()],
 ```
 
-## MaterialPageRoute Example Code
+## Initialization & Setup
+
+If your void main is an arrow function like this 
+
+```dart
+void main() => runApp(const MyAppMaterialApp());
+```
+
+We need to change it so it will accept extra code : 
+
+```dart
+void main() {
+  // 1. Essential for plugins that need to talk to the native/web host 
+  // before the UI is rendered.
+  WidgetsFlutterBinding.ensureInitialized();
+
+// 2. Statcounter code
+  Statcounter.init(
+    project: 123456,
+    security: 'abcdef',
+    manageConsent: true,
+    cmp: 'cookiebot',
+  );
+
+  // 3. Launch the app
+  runApp(const StatcounterApp());
+}
+```
+
+## Full Example Code
 
 ```dart
 
